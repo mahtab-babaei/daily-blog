@@ -1,22 +1,23 @@
+import { Flex } from "@radix-ui/themes";
 import Link from "next/link";
 
 const NavBar = () => {
   const links = [
-    { label: "صفحه ادمین", href: "/admin", key: "admin" },
-    { label: "بلاگ", href: "/blog", key: "blog" },
     { label: "خانه", href: "/", key: "home" },
+    { label: "بلاگ", href: "/blog", key: "blog" },
+    { label: "صفحه ادمین", href: "/admin", key: "admin" },
   ];
   return (
-    <nav className="flex space-x-6 border-b mb-5 p-5 justify-center ">
-      <Link href="/">لوگو</Link>
-      <div className="flex space-x-6">
+    <Flex gap="5" justify="center" p='5' mb='5' className="border-b">
+      <Flex gap="5">
         {links.map((link) => (
           <Link key={link.key} href={link.href}>
             {link.label}
           </Link>
         ))}
-      </div>
-    </nav>
+      </Flex>
+      <Link href="/">لوگو</Link>
+    </Flex>
   );
 };
 
