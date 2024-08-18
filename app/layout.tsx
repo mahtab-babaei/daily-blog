@@ -1,11 +1,15 @@
 import { Theme } from "@radix-ui/themes";
 import "@radix-ui/themes/styles.css";
-import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import "./theme-config.css";
 import "./globals.css";
+import type { Metadata } from "next";
+import { Vazirmatn } from "next/font/google";
 import NavBar from "./NavBar";
 
-const inter = Inter({ subsets: ["latin"] });
+const vazirmatn = Vazirmatn({
+  subsets: ["arabic"],
+  variable: "--font-vazirmatn",
+});
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -19,7 +23,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" dir="rtl">
-      <body className={inter.className}>
+      <body className={vazirmatn.className}>
         <Theme>
           <NavBar />
           <main className="p-6">{children}</main>
