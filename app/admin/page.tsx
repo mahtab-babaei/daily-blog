@@ -1,22 +1,28 @@
 "use client";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { InfoCircledIcon } from "@radix-ui/react-icons";
 import { Button, Callout, Flex, Grid, Text, TextField } from "@radix-ui/themes";
-import SimpleMDE from "react-simplemde-editor";
-import "easymde/dist/easymde.min.css";
-import { useForm, Controller } from "react-hook-form";
 import axios from "axios";
+import "easymde/dist/easymde.min.css";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
-import { InfoCircledIcon } from "@radix-ui/react-icons";
+import { Controller, useForm } from "react-hook-form";
+import SimpleMDE from "react-simplemde-editor";
+import { z } from "zod";
+import { createPostSchema } from "../validationSchemas";
 
-interface PostForm {
-  title: string;
-  description: string;
-  image?: string;
-}
+type PostForm = z.infer<typeof createPostSchema>;
 
 const AdminPage = () => {
   const router = useRouter();
-  const { register, control, handleSubmit } = useForm<PostForm>();
+  const {
+    register,
+    control,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<PostForm>({
+    resolver: zodResolver(createPostSchema),
+  });
   const [error, setError] = useState("");
 
   return (
@@ -44,6 +50,11 @@ const AdminPage = () => {
           <Grid gap="3">
             <Text>عنوان</Text>
             <TextField.Root placeholder="پست جدید" {...register("title")} />
+            {errors.title && (
+              <Text size="1" className="text-accent">
+                {errors.title.message}
+              </Text>
+            )}
           </Grid>
           <Grid gap="3">
             <Text>توضیحات</Text>
@@ -52,6 +63,11 @@ const AdminPage = () => {
               control={control}
               render={({ field }) => <SimpleMDE {...field} />}
             />
+            {errors.description && (
+              <Text size="1" className="text-accent">
+                {errors.description.message}
+              </Text>
+            )}
           </Grid>
           <Grid gap="3">
             <Text>تصویر</Text>
