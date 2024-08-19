@@ -10,6 +10,7 @@ import { Controller, useForm } from "react-hook-form";
 import SimpleMDE from "react-simplemde-editor";
 import { z } from "zod";
 import { createPostSchema } from "../validationSchemas";
+import ErrorMessage from "../components/ErrorMessage";
 
 type PostForm = z.infer<typeof createPostSchema>;
 
@@ -50,11 +51,7 @@ const AdminPage = () => {
           <Grid gap="3">
             <Text>عنوان</Text>
             <TextField.Root placeholder="پست جدید" {...register("title")} />
-            {errors.title && (
-              <Text size="1" className="text-accent">
-                {errors.title.message}
-              </Text>
-            )}
+            <ErrorMessage>{errors.title?.message}</ErrorMessage>
           </Grid>
           <Grid gap="3">
             <Text>توضیحات</Text>
@@ -63,11 +60,8 @@ const AdminPage = () => {
               control={control}
               render={({ field }) => <SimpleMDE {...field} />}
             />
-            {errors.description && (
-              <Text size="1" className="text-accent">
-                {errors.description.message}
-              </Text>
-            )}
+
+            <ErrorMessage>{errors.description?.message}</ErrorMessage>
           </Grid>
           <Grid gap="3">
             <Text>تصویر</Text>
