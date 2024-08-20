@@ -1,7 +1,7 @@
 "use client";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { InfoCircledIcon } from "@radix-ui/react-icons";
-import { Button, Callout, Flex, Grid, Text, TextField } from "@radix-ui/themes";
+import { Callout, Flex, Grid, Text, TextField } from "@radix-ui/themes";
 import axios from "axios";
 import "easymde/dist/easymde.min.css";
 import { useRouter } from "next/navigation";
@@ -9,9 +9,10 @@ import { useState } from "react";
 import { Controller, useForm } from "react-hook-form";
 import SimpleMDE from "react-simplemde-editor";
 import { z } from "zod";
-import { createPostSchema } from "../validationSchemas";
+import DarkButton from "../components/DarkButton";
 import ErrorMessage from "../components/ErrorMessage";
-
+import Spinner from "../components/Spinner";
+import { createPostSchema } from "../validationSchemas";
 type PostForm = z.infer<typeof createPostSchema>;
 
 const AdminPage = () => {
@@ -25,15 +26,18 @@ const AdminPage = () => {
     resolver: zodResolver(createPostSchema),
   });
   const [error, setError] = useState("");
+  const [isSubmitting, SetSubmitting] = useState(false);
 
   return (
     <>
       <form
         onSubmit={handleSubmit(async (data) => {
           try {
+            SetSubmitting(true);
             await axios.post("/api/blog", data);
             router.push("/blog");
           } catch (error) {
+            SetSubmitting(false);
             setError("متاسفیم، یک خطای غیر منتظره رخ داد!");
           }
         })}
@@ -68,7 +72,9 @@ const AdminPage = () => {
             <TextField.Root placeholder="آدرس تصویر" {...register("image")} />
           </Grid>
           <Flex justify="center">
-            <Button>ثبت پست جدید</Button>
+            <DarkButton isSubmitting={isSubmitting}>
+              ثبت پست {isSubmitting && <Spinner />}
+            </DarkButton>
           </Flex>
         </Grid>
       </form>

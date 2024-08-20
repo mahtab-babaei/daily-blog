@@ -20,6 +20,7 @@ const config: Config = {
       neutral: "#F2F6FF",
       light: "#6A6D9E",
       dark: "#16194F",
+      white: "#FFFFFF"
     },
   },
   plugins: [],
