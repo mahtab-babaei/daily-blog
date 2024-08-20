@@ -17,6 +17,7 @@ type PostForm = z.infer<typeof createPostSchema>;
 
 const AdminPage = () => {
   const router = useRouter();
+
   const {
     register,
     control,
@@ -25,23 +26,25 @@ const AdminPage = () => {
   } = useForm<PostForm>({
     resolver: zodResolver(createPostSchema),
   });
+
   const [error, setError] = useState("");
+
   const [isSubmitting, SetSubmitting] = useState(false);
+  
+  const onSubmit = handleSubmit(async (data) => {
+    try {
+      SetSubmitting(true);
+      await axios.post("/api/blog", data);
+      router.push("/blog");
+    } catch (error) {
+      SetSubmitting(false);
+      setError("متاسفیم، یک خطای غیر منتظره رخ داد!");
+    }
+  });
 
   return (
     <>
-      <form
-        onSubmit={handleSubmit(async (data) => {
-          try {
-            SetSubmitting(true);
-            await axios.post("/api/blog", data);
-            router.push("/blog");
-          } catch (error) {
-            SetSubmitting(false);
-            setError("متاسفیم، یک خطای غیر منتظره رخ داد!");
-          }
-        })}
-      >
+      <form onSubmit={onSubmit}>
         <Grid gap="5" className="max-w-xl">
           <Text>ایجاد پست جدید</Text>
           {error && (
