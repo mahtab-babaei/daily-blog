@@ -9,7 +9,7 @@ const NavLinks = () => {
   ];
 
   return (
-    <Flex gap="5" justify="center" py="6" mb="5" className="text-neutral">
+    <Flex gap="5" justify="center" py="6" className="text-neutral">
       <Flex gap="5">
         {links.map((link) => (
           <Link key={link.key} href={link.href}>

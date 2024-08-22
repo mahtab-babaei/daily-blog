@@ -1,5 +1,5 @@
 import { PropsWithChildren } from "react";
-import mainImage from "@/app/images/mainImage.png";
+import headerImage from "@/app/images/headerImage.png";
 import Image from "next/image";
 
 const HomeNavBar = ({ children }: PropsWithChildren) => {
@@ -8,12 +8,12 @@ const HomeNavBar = ({ children }: PropsWithChildren) => {
       <div className="absolute top-0 left-1/2 transform -translate-x-1/2 z-10">{children}</div>
       <div className="absolute diagonal-gradient w-full h-full z-0"></div>
       <Image
-        className="absolute z-10 w-72 h-72 sm:w-[550px] sm:h-[550px]"
-        src={mainImage}
-        alt="mainImage"
+        className="absolute z-10 w-72 sm:w-[550px]"
+        src={headerImage}
+        alt="headerImage"
 
         style={{
-          top: "5%",
+          top: "28%",
           right: "5%",
         }}
       />
