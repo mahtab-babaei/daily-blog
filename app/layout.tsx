@@ -26,7 +26,7 @@ export default function RootLayout({
       <body className={vazirmatn.variable}>
         <Theme className="bg-neutral text-sm">
           <NavBar />
-          <main>{children}</main>
+          <main className="py-12 px-6">{children}</main>
         </Theme>
       </body>
     </html>
