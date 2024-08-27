@@ -1,5 +1,5 @@
 import "@radix-ui/themes/styles.css";
-import './theme-config.css'
+import "./theme-config.css";
 import type { Metadata } from "next";
 import "./globals.css";
 import { Theme } from "@radix-ui/themes";
@@ -24,7 +24,7 @@ export default function RootLayout({
   return (
     <html lang="en" dir="rtl">
       <body className={vazirmatn.variable}>
-        <Theme>
+        <Theme className="bg-neutral text-sm">
           <NavBar />
           <main>{children}</main>
         </Theme>
