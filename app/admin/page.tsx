@@ -1,5 +1,8 @@
-import { Flex, Grid, Text, TextArea, TextField } from "@radix-ui/themes";
-import React from "react";
+"use client";
+import { Flex, Grid, Text, TextField } from "@radix-ui/themes";
+import SimpleMDE from "react-simplemde-editor";
+import "easymde/dist/easymde.min.css";
+import "./customEditor.css";
 import DarkButton from "../components/DarkButton";
 
 const AdminPage = () => {
@@ -10,7 +13,7 @@ const AdminPage = () => {
           <Text className="text-primary">ایجاد</Text> پست جدید
         </Text>
         <Grid gap="3">
-          <Text weight="medium">عنوان</Text>
+          <Text className="text-dark font-medium">عنوان</Text>
           <TextField.Root
             size="3"
             variant="soft"
@@ -19,17 +22,20 @@ const AdminPage = () => {
           />
         </Grid>
         <Grid gap="3">
-          <Text weight="medium">توضیحات</Text>
-          <TextArea
-            variant="soft"
-            className="bg-white h-48 p-2"
+          <Text className="text-dark font-medium">توضیحات</Text>
+          <SimpleMDE
+            options={{
+              direction: "rtl",
+              spellChecker: false,
+              hideIcons: ["image"],
+            }}
             placeholder="شرح پست جدید"
           />
         </Grid>
         <Grid gap="3">
-          <Text weight="medium">تصویر</Text>
+          <Text className="text-dark font-medium">تصویر</Text>
           <TextField.Root
-          size="3"
+            size="3"
             variant="soft"
             className="bg-white p-2 text-sm"
             placeholder="آدرس تصویر"
