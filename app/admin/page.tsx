@@ -9,16 +9,22 @@ import axios from "axios";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { InfoCircledIcon } from "@radix-ui/react-icons";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { createPostSchema } from "../validationSchemas";
+import { z } from "zod";
 
-interface PostForm {
-  title: string;
-  description: string;
-  image: string;
-}
+type PostForm = z.infer<typeof createPostSchema>;
 
 const AdminPage = () => {
   const router = useRouter();
-  const { register, control, handleSubmit } = useForm<PostForm>();
+  const {
+    register,
+    control,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<PostForm>({
+    resolver: zodResolver(createPostSchema),
+  });
   const [error, setError] = useState("");
 
   return (
@@ -26,7 +32,7 @@ const AdminPage = () => {
       className="flex justify-center"
       onSubmit={handleSubmit(async (data) => {
         try {
-          await axios.post("/api/blog", data);
+          await axios.post("x/api/blog", data);
           router.push("/blog");
         } catch (error) {
           setError("متاسفیم، یک خطای غیر منتظره رخ داد!");
@@ -38,11 +44,16 @@ const AdminPage = () => {
           <Text className="text-primary">ایجاد</Text> پست جدید
         </Text>
         {error && (
-          <Callout.Root className="bg-opacity-5 bg-accent text-accent">
+          <Callout.Root
+            variant="outline"
+            size="1"
+            color="ruby"
+            className="text-accent"
+          >
             <Callout.Icon>
               <InfoCircledIcon />
             </Callout.Icon>
-            <Callout.Text>{error}</Callout.Text>
+            <Callout.Text size="1">{error}</Callout.Text>
           </Callout.Root>
         )}
         <Grid gap="3">
@@ -54,6 +65,11 @@ const AdminPage = () => {
             className="bg-white p-2 text-sm"
             placeholder="پست جدید"
           />
+          {errors.title && (
+            <Text size="1" className="text-accent">
+              {errors.title?.message}
+            </Text>
+          )}
         </Grid>
         <Grid gap="3">
           <Text className="text-dark font-medium">توضیحات</Text>
@@ -64,6 +80,11 @@ const AdminPage = () => {
               <SimpleMDE placeholder="شرح پست جدید" {...field} />
             )}
           />
+          {errors.description && (
+            <Text size="1" className="text-accent">
+              {errors.description?.message}
+            </Text>
+          )}
         </Grid>
         <Grid gap="3">
           <Text className="text-dark font-medium">تصویر</Text>
