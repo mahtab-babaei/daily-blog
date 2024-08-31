@@ -12,6 +12,7 @@ import { InfoCircledIcon } from "@radix-ui/react-icons";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { createPostSchema } from "../validationSchemas";
 import { z } from "zod";
+import ErrorMessage from "../components/ErrorMessage";
 
 type PostForm = z.infer<typeof createPostSchema>;
 
@@ -32,7 +33,7 @@ const AdminPage = () => {
       className="flex justify-center"
       onSubmit={handleSubmit(async (data) => {
         try {
-          await axios.post("x/api/blog", data);
+          await axios.post("/api/blog", data);
           router.push("/blog");
         } catch (error) {
           setError("متاسفیم، یک خطای غیر منتظره رخ داد!");
@@ -65,11 +66,7 @@ const AdminPage = () => {
             className="bg-white p-2 text-sm"
             placeholder="پست جدید"
           />
-          {errors.title && (
-            <Text size="1" className="text-accent">
-              {errors.title?.message}
-            </Text>
-          )}
+          <ErrorMessage>{errors.title?.message}</ErrorMessage>
         </Grid>
         <Grid gap="3">
           <Text className="text-dark font-medium">توضیحات</Text>
@@ -80,11 +77,7 @@ const AdminPage = () => {
               <SimpleMDE placeholder="شرح پست جدید" {...field} />
             )}
           />
-          {errors.description && (
-            <Text size="1" className="text-accent">
-              {errors.description?.message}
-            </Text>
-          )}
+          <ErrorMessage>{errors.description?.message}</ErrorMessage>
         </Grid>
         <Grid gap="3">
           <Text className="text-dark font-medium">تصویر</Text>
