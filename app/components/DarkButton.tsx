@@ -1,12 +1,15 @@
 import { ReactNode } from "react";
+import Spinner from "./Spinner";
 
 interface Props {
   children: ReactNode;
+  isSubmitting: boolean;
 }
-const DarkButton = ({ children }: Props) => {
+const DarkButton = ({ children, isSubmitting }: Props) => {
   return (
     <>
       <button
+        disabled={isSubmitting}
         className="
           relative 
           flex
@@ -22,6 +25,7 @@ const DarkButton = ({ children }: Props) => {
           hover:font-medium"
       >
         {children}
+        {isSubmitting && <Spinner />}
         <span
           className="
           absolute 

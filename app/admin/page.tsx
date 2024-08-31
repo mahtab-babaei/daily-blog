@@ -27,15 +27,18 @@ const AdminPage = () => {
     resolver: zodResolver(createPostSchema),
   });
   const [error, setError] = useState("");
+  const [isSubmitting, setSubmitting] = useState(false);
 
   return (
     <form
       className="flex justify-center"
       onSubmit={handleSubmit(async (data) => {
         try {
+          setSubmitting(true);
           await axios.post("/api/blog", data);
           router.push("/blog");
         } catch (error) {
+          setSubmitting(false);
           setError("متاسفیم، یک خطای غیر منتظره رخ داد!");
         }
       })}
@@ -90,7 +93,7 @@ const AdminPage = () => {
           />
         </Grid>
         <Flex justify="center">
-          <DarkButton>ثبت پست</DarkButton>
+          <DarkButton isSubmitting={isSubmitting}>ثبت پست</DarkButton>
         </Flex>
       </Grid>
     </form>
