@@ -1,6 +1,8 @@
 .CodeMirror {
   border: none !important;
   border-radius: 0px !important;
+  direction: rtl;
+  text-align: right;
 }
 
 .editor-statusbar {
@@ -9,6 +11,7 @@
   border-bottom-right-radius: 6px;
   border-top: 1px solid #ddd;
 }
+
 .editor-toolbar {
   background-color: #fff;
   border: none;
@@ -18,6 +21,15 @@
 }
 
 .CodeMirror-lines {
-  padding: 8px;
+  direction: rtl;
 }
 
+.CodeMirror pre {
+  direction: rtl;
+  text-align: right;
+
+}
+
+.CodeMirror-scroll {
+  overflow-y: auto !important;
+}
