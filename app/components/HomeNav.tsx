@@ -1,5 +1,5 @@
 import { PropsWithChildren } from "react";
-import headerImage from "@/app/images/headerImage.png";
+import headerImage from "@/public/images/main/headerImage.png";
 import Image from "next/image";
 
 const HomeNav = ({ children }: PropsWithChildren) => {
