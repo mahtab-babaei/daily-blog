@@ -19,6 +19,7 @@ const BlogPage = async () => {
         {posts.map((post) => (
           <PostCard
             key={post.id}
+            id={post.id}
             title={post.title}
             description={post.description.slice(0, 150) + "..."}
             image={post.image}

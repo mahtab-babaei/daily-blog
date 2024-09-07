@@ -2,16 +2,19 @@ import { Grid, Text } from "@radix-ui/themes";
 import React from "react";
 import noImage from "@/public/images/main/404.png";
 import Image from "next/image";
+import Link from "next/link";
 
 interface Props {
+  id: number;
   title: string;
   description: string;
   image: string | null;
 }
 
-const PostCard = ({ title, description, image }: Props) => {
+const PostCard = ({ id, title, description, image }: Props) => {
   return (
-    <Grid gap="3" className="p-6 rounded-xl bg-white">
+    <Link href={`/blog/${id}`}>
+    <Grid gap="3" className="p-6 rounded-xl bg-white hover:scale-105 transition-transform">
       {image ? (
         <img src={image} alt={title} className="rounded-xl" />
       ) : (
@@ -24,6 +27,7 @@ const PostCard = ({ title, description, image }: Props) => {
         {description}{" "}
       </Text>
     </Grid>
+    </Link>
   );
 };
 
