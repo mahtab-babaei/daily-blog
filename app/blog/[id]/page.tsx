@@ -3,12 +3,13 @@ import noImage from "@/public/images/main/404.png";
 import Image from "next/image";
 import { notFound } from "next/navigation";
 import React from "react";
+import moment from "moment-jalaali";
+
 interface Props {
   params: { id: string };
 }
 
 const PostDetailPage = async ({ params }: Props) => {
-
   const post = await prisma.post.findUnique({
     where: { id: parseInt(params.id) },
   });
@@ -24,7 +25,7 @@ const PostDetailPage = async ({ params }: Props) => {
       )}
       <p>{post?.title}</p>
       <p>{post?.description}</p>
-      <p>{post?.createdAt.toDateString()}</p>
+      <p>{moment(post.createdAt).format("jYYYY/jMM/jDD")}</p>
     </div>
   );
 };
