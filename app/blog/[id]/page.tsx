@@ -1,9 +1,8 @@
 import prisma from "@/prisma/client";
-import noImage from "@/public/images/main/404.png";
-import Image from "next/image";
+import { Flex, Grid, Text } from "@radix-ui/themes";
 import { notFound } from "next/navigation";
 import React from "react";
-import moment from "moment-jalaali";
+import PostDetails from "./PostDetails";
 
 interface Props {
   params: { id: string };
@@ -17,16 +16,11 @@ const PostDetailPage = async ({ params }: Props) => {
   if (!post) notFound();
 
   return (
-    <div>
-      {post.image ? (
-        <img src={post.image} alt={post.title} className="rounded-xl" />
-      ) : (
-        <Image priority className="rounded-xl" src={noImage} alt="imgCardd" />
-      )}
-      <p>{post?.title}</p>
-      <p>{post?.description}</p>
-      <p>{moment(post.createdAt).format("jYYYY/jMM/jDD")}</p>
-    </div>
+    <Flex justify="center">
+      <Grid gap="8" className="max-w-lg">
+        <PostDetails post={post} />
+      </Grid>
+    </Flex>
   );
 };
 
