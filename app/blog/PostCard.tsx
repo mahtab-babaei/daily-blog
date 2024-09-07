@@ -13,7 +13,7 @@ const PostCard = ({ title, description, image }: Props) => {
   return (
     <Grid gap="3" className="p-6 rounded-xl bg-white">
       {image ? (
-        <img src={image} alt={title} />
+        <img src={image} alt={title} className="rounded-xl" />
       ) : (
         <Image priority className="rounded-xl" src={noImage} alt="imgCardd" />
       )}
