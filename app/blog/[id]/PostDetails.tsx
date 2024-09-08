@@ -26,8 +26,8 @@ const PostDetails = ({post}: Props) => {
             />
           )}
         </Flex>
-        <Heading className="text-lg text-dark">{post?.title}</Heading>
-        <ReactMarkdown className="prose text-dark">{post?.description}</ReactMarkdown>
+        <Heading className="text-base text-dark">{post?.title}</Heading>
+        <ReactMarkdown className="prose text-light text-sm">{post?.description}</ReactMarkdown>
         <Flex gap="1">
           <CalendarIcon className="text-light" />
           <p className="text-dark font-bold">

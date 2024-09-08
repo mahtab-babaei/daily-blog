@@ -14,7 +14,7 @@ const NavLinks = () => {
   ];
 
   return (
-    <Flex gap="5" justify="center" py="6" className="text-neutral">
+    <Flex gap="5" justify="center" py="6" className="text-neutral text-base">
       <Flex gap="5">
         {links.map((link) => (
           <Link

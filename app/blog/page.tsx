@@ -13,7 +13,7 @@ const BlogPage = async () => {
       </Text>
       <Grid
         gap="5"
-        className="w-full max-w-md md:max-w-lg lg:max-w-2xl"
+        className="w-full max-w-lg md:max-w-xl lg:max-w-3xl"
         columns={{ initial: "1", sm: "2", md: "3" }}
       >
         {posts.map((post) => (

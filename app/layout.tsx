@@ -4,11 +4,11 @@ import type { Metadata } from "next";
 import "./globals.css";
 import { Theme } from "@radix-ui/themes";
 import NavBar from "./NavBar";
-import { Vazirmatn } from "next/font/google";
+import { Rubik } from "next/font/google";
 
-const vazirmatn = Vazirmatn({
+const rubik = Rubik({
   subsets: ["arabic"],
-  variable: "--font-vazirmatn",
+  variable: "--font-rubik",
 });
 
 export const metadata: Metadata = {
@@ -23,7 +23,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" dir="rtl">
-      <body className={vazirmatn.variable}>
+      <body className={rubik.variable}>
         <Theme className="bg-neutral text-sm">
           <NavBar />
           <main className="py-12 px-6">{children}</main>

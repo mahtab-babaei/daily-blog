@@ -20,11 +20,11 @@ const PostCard = ({ id, title, description, image }: Props) => {
       ) : (
         <Image priority className="rounded-xl" src={noImage} alt="imgCardd" />
       )}
-      <Text as="div" size="2" weight="bold">
+      <Text as="div" size="3" weight="bold">
         {title}
       </Text>
-      <Text as="div" color="gray" size="1">
-        {description}{" "}
+      <Text as="div" color="gray">
+        {description}
       </Text>
     </Grid>
     </Link>

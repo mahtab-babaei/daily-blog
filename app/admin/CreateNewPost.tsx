@@ -57,7 +57,7 @@ const CreateNewPost = () => {
           </Callout.Root>
         )}
         <Grid gap="3">
-          <Text className="text-dark font-medium">عنوان</Text>
+          <Text className="text-dark text-base font-medium">عنوان</Text>
           <TextField.Root
             {...register("title")}
             size="3"
@@ -68,7 +68,7 @@ const CreateNewPost = () => {
           <ErrorMessage>{errors.title?.message}</ErrorMessage>
         </Grid>
         <Grid gap="3">
-          <Text className="text-dark font-medium">توضیحات</Text>
+          <Text className="text-dark text-base font-medium">توضیحات</Text>
           <Controller
             name="description"
             control={control}
@@ -79,7 +79,7 @@ const CreateNewPost = () => {
           <ErrorMessage>{errors.description?.message}</ErrorMessage>
         </Grid>
         <Grid gap="3">
-          <Text className="text-dark font-medium">تصویر</Text>
+          <Text className="text-dark text-base font-medium">تصویر</Text>
           <TextField.Root
             {...register("image")}
             size="3"
