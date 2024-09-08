@@ -3,6 +3,7 @@ import { Flex, Grid, Text } from "@radix-ui/themes";
 import { notFound } from "next/navigation";
 import React from "react";
 import PostDetails from "./PostDetails";
+import PostComment from "./PostComment";
 
 interface Props {
   params: { id: string };
@@ -19,6 +20,7 @@ const PostDetailPage = async ({ params }: Props) => {
     <Flex justify="center">
       <Grid gap="8" className="max-w-lg">
         <PostDetails post={post} />
+        <PostComment />
       </Grid>
     </Flex>
   );
