@@ -1,10 +1,10 @@
 import noImage from "@/public/images/main/404.png";
-import Image from "next/image";
-import moment from "moment-jalaali";
+import { Post } from "@prisma/client";
 import { CalendarIcon } from "@radix-ui/react-icons";
 import { Flex, Grid, Heading } from "@radix-ui/themes";
-import { Post } from "@prisma/client";
-import ReactMarkdown from 'react-markdown'
+import moment from "moment-jalaali";
+import Image from "next/image";
+import ReactMarkdown from 'react-markdown';
 
 interface Props {
   post: Post

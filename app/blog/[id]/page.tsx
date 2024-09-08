@@ -1,9 +1,8 @@
 import prisma from "@/prisma/client";
-import { Flex, Grid, Text } from "@radix-ui/themes";
+import { Flex, Grid } from "@radix-ui/themes";
 import { notFound } from "next/navigation";
-import React from "react";
-import PostDetails from "./PostDetails";
 import PostComment from "./PostComment";
+import PostDetails from "./PostDetails";
 
 interface Props {
   params: { id: string };

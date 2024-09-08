@@ -1,6 +1,5 @@
 import prisma from "@/prisma/client";
 import { Flex, Grid, Text } from "@radix-ui/themes";
-import React from "react";
 import PostCard from "./PostCard";
 
 const BlogPage = async () => {
