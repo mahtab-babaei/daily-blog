@@ -26,6 +26,8 @@ const config: Config = {
       white: "#FFFFFF",
     },
   },
-  plugins: [],
+  plugins: [
+    require('@tailwindcss/typography'),
+  ],
 };
 export default config;

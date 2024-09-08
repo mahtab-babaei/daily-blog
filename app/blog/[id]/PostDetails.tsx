@@ -4,6 +4,7 @@ import moment from "moment-jalaali";
 import { CalendarIcon } from "@radix-ui/react-icons";
 import { Flex, Grid, Heading } from "@radix-ui/themes";
 import { Post } from "@prisma/client";
+import ReactMarkdown from 'react-markdown'
 
 interface Props {
   post: Post
@@ -26,7 +27,7 @@ const PostDetails = ({post}: Props) => {
           )}
         </Flex>
         <Heading className="text-lg text-dark">{post?.title}</Heading>
-        <p className="text-dark">{post?.description}</p>
+        <ReactMarkdown className="prose text-dark">{post?.description}</ReactMarkdown>
         <Flex gap="1">
           <CalendarIcon className="text-light" />
           <p className="text-dark font-bold">
