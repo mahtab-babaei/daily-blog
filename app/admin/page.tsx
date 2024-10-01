@@ -1,6 +1,6 @@
 import { Flex, Grid, Text } from "@radix-ui/themes";
-import CreateNewPost from "./CreateNewPost";
-import PostsSummary from "./PostsSummary";
+import CreateNewPost from "./new/CreateNewPost";
+import PostsSummary from "./userPosts/PostsSummary";
 
 const AdminPage = () => {
   return (

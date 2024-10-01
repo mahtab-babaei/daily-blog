@@ -9,20 +9,21 @@ import { useState } from "react";
 import { Controller, useForm } from "react-hook-form";
 import SimpleMDE from "react-simplemde-editor";
 import { z } from "zod";
-import { DarkButton, ErrorMessage } from "../components";
-import { createPostSchema } from "../validationSchemas";
+import { DarkButton, ErrorMessage } from "../../components";
+import { createPostSchema } from "../../validationSchemas";
 import "./customEditor.css";
+import { Post } from "@prisma/client";
 
-type PostForm = z.infer<typeof createPostSchema>;
+type PostFormData = z.infer<typeof createPostSchema>;
 
-const CreateNewPost = () => {
+const PostForm = ({ post }: { post?: Post }) => {
   const router = useRouter();
   const {
     register,
     control,
     handleSubmit,
     formState: { errors },
-  } = useForm<PostForm>({
+  } = useForm<PostFormData>({
     resolver: zodResolver(createPostSchema),
   });
   const [error, setError] = useState("");
@@ -63,12 +64,14 @@ const CreateNewPost = () => {
             variant="soft"
             className="bg-white p-2 text-sm"
             placeholder="پست جدید"
+            defaultValue={post?.title}
           />
           <ErrorMessage>{errors.title?.message}</ErrorMessage>
         </Grid>
         <Grid gap="3">
           <Text className="text-dark text-base font-medium">توضیحات</Text>
           <Controller
+          defaultValue={post?.description}
             name="description"
             control={control}
             render={({ field }) => (
@@ -95,4 +98,4 @@ const CreateNewPost = () => {
   );
 };
 
-export default CreateNewPost;
+export default PostForm;

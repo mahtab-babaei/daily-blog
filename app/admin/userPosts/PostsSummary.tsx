@@ -4,7 +4,7 @@ import { Flex, Grid, Text } from "@radix-ui/themes";
 import Image from "next/image";
 import Link from "next/link";
 import { PiEyeBold } from "react-icons/pi";
-import { AccentButton } from "../components";
+import { AccentButton } from "../../components";
 import DeletePostButton from "./DeletePostButton";
 import EditPostButton from "./EditPostButton";
 
