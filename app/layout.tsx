@@ -2,7 +2,7 @@ import "@radix-ui/themes/styles.css";
 import "./theme-config.css";
 import type { Metadata } from "next";
 import "./globals.css";
-import { Theme } from "@radix-ui/themes";
+import { Container, Theme } from "@radix-ui/themes";
 import NavBar from "./NavBar";
 import { Rubik } from "next/font/google";
 
@@ -26,7 +26,9 @@ export default function RootLayout({
       <body className={rubik.variable}>
         <Theme className="bg-neutral text-sm">
           <NavBar />
-          <main className="py-12 px-6">{children}</main>
+          <main className="py-12 px-6">
+            <Container>{children}</Container>
+          </main>
         </Theme>
       </body>
     </html>
