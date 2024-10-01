@@ -3,9 +3,10 @@ import noImage from "@/public/images/main/404.png";
 import { Flex, Grid, Text } from "@radix-ui/themes";
 import Image from "next/image";
 import Link from "next/link";
-import { PiEyeBold, PiNotePencilBold, PiTrashBold } from "react-icons/pi";
+import { PiEyeBold } from "react-icons/pi";
 import { AccentButton } from "../components";
 import DeletePostButton from "./DeletePostButton";
+import EditPostButton from "./EditPostButton";
 
 const PostsSummary = async () => {
   const posts = await prisma.post.findMany();
@@ -36,9 +37,7 @@ const PostsSummary = async () => {
             {post.title}
           </Text>
           <Grid align="baseline" className="shrink-0" gap="2">
-            <button>
-              <PiNotePencilBold className="text-center w-6 h-6 text-light hover:text-dark transition-colors" />
-            </button>
+            <EditPostButton postId={post.id} />
             <button>
               <Link href={`/blog/${post.id}`}>
                 <PiEyeBold className="text-center w-6 h-6 text-light hover:text-dark transition-colors" />

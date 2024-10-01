@@ -14,11 +14,7 @@ const AdminPage = () => {
           <Text className="text-accent">آخرین</Text> پست های شما
         </Text>
         <Flex justify="center">
-          <PostsSummary
-            image="/images/main/404.png"
-            id={1}
-            title="پست شماره بیست"
-          />
+          <PostsSummary />
         </Flex>
       </Grid>
     </Flex>
