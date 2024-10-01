@@ -54,15 +54,19 @@ const PostsSummary = async () => {
                   تایید حذف
                 </AlertDialog.Title>
                 <AlertDialog.Description className="text-sm">
-                از حذف کردن این پست مطمئنی؟ امکان بازیابی پست پاک شده وجود نداره .
+                  از حذف کردن این پست مطمئنی؟ امکان بازیابی پست پاک شده وجود
+                  نداره .
                 </AlertDialog.Description>
-                <Flex mt='4' gap='3'>
-                  
+                <Flex mt="4" gap="3">
                   <AlertDialog.Cancel>
-                    <button className="bg-light p-2 font-medium bg-opacity-30 text-sm rounded-md">نه ولش کن</button>
+                    <button className="bg-light p-2 font-medium bg-opacity-30 text-sm rounded-md">
+                      نه ولش کن
+                    </button>
                   </AlertDialog.Cancel>
                   <AlertDialog.Action>
-                    <button className="bg-accent p-2 text-white font-medium text-sm rounded-md">آره مطمئنم</button>
+                    <button className="bg-accent p-2 font-medium text-white  text-sm rounded-md">
+                      آره مطمئنم
+                    </button>
                   </AlertDialog.Action>
                 </Flex>
               </AlertDialog.Content>
