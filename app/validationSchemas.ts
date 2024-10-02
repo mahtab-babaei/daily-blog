@@ -1,6 +1,6 @@
 import { z } from "zod";
 
-export const createPostSchema = z.object({
+export const postSchema = z.object({
   title: z
     .string({ message: "عنوان پست نباید خالی بماند." })
     .min(1, { message: "عنوان پست نباید خالی بماند." })

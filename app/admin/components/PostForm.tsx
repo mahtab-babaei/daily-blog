@@ -10,11 +10,11 @@ import { Controller, useForm } from "react-hook-form";
 import SimpleMDE from "react-simplemde-editor";
 import { z } from "zod";
 import { DarkButton, ErrorMessage } from "../../components";
-import { createPostSchema } from "../../validationSchemas";
+import { postSchema } from "../../validationSchemas";
 import "./customEditor.css";
 import { Post } from "@prisma/client";
 
-type PostFormData = z.infer<typeof createPostSchema>;
+type PostFormData = z.infer<typeof postSchema>;
 
 const PostForm = ({ post }: { post?: Post }) => {
   const router = useRouter();
@@ -24,7 +24,7 @@ const PostForm = ({ post }: { post?: Post }) => {
     handleSubmit,
     formState: { errors },
   } = useForm<PostFormData>({
-    resolver: zodResolver(createPostSchema),
+    resolver: zodResolver(postSchema),
   });
   const [error, setError] = useState("");
   const [isSubmitting, setSubmitting] = useState(false);
@@ -71,7 +71,7 @@ const PostForm = ({ post }: { post?: Post }) => {
         <Grid gap="3">
           <Text className="text-dark text-base font-medium">توضیحات</Text>
           <Controller
-          defaultValue={post?.description}
+            defaultValue={post?.description}
             name="description"
             control={control}
             render={({ field }) => (
@@ -88,6 +88,7 @@ const PostForm = ({ post }: { post?: Post }) => {
             variant="soft"
             className="bg-white p-2 text-sm"
             placeholder="آدرس تصویر"
+            defaultValue={post?.image || ""}
           />
         </Grid>
         <Flex justify="center">
