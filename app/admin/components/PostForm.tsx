@@ -32,7 +32,10 @@ const PostForm = ({ post }: { post?: Post }) => {
   const onSubmit = handleSubmit(async (data) => {
     try {
       setSubmitting(true);
-      await axios.post("/api/blog", data);
+      if (post) 
+        await axios.patch("/api/blog/" + post.id, data);
+      else 
+        await axios.post("/api/blog", data);
       router.push("/blog");
     } catch (error) {
       setSubmitting(false);
@@ -92,7 +95,9 @@ const PostForm = ({ post }: { post?: Post }) => {
           />
         </Grid>
         <Flex justify="center">
-          <DarkButton isSubmitting={isSubmitting}>ثبت پست</DarkButton>
+          <DarkButton isSubmitting={isSubmitting}>
+            {post ? "ویرایش پست" : "ثبت پست"}
+          </DarkButton>
         </Flex>
       </Grid>
     </form>
