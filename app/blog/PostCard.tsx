@@ -1,31 +1,29 @@
-import noImage from "@/public/images/main/404.png";
+import { Post } from "@prisma/client";
 import { Grid, Text } from "@radix-ui/themes";
-import Image from "next/image";
 import Link from "next/link";
+import { ConditionalImage } from "../components";
 
-interface Props {
-  id: number;
-  title: string;
-  description: string;
-  image: string | null;
-}
-
-const PostCard = ({ id, title, description, image }: Props) => {
+const PostCard = ({ post }: { post: Post }) => {
   return (
-    <Link href={`/blog/${id}`}>
-    <Grid gap="3" className="p-6 rounded-xl bg-white hover:scale-105 transition-transform">
-      {image ? (
-        <img src={image} alt={title} className="rounded-xl" />
-      ) : (
-        <Image priority className="rounded-xl" src={noImage} alt="imgCardd" />
-      )}
-      <Text as="div" size="3" weight="bold">
-        {title}
-      </Text>
-      <Text as="div" color="gray">
-        {description}
-      </Text>
-    </Grid>
+    <Link href={`/blog/${post.id}`}>
+      <Grid
+        gap="3"
+        className="p-6 rounded-xl bg-white hover:scale-105 transition-transform"
+      >
+        <div className=" aspect-[1/1] rounded-xl overflow-hidden">
+          <ConditionalImage
+            src={post.image}
+            alt={post.title}
+            className="w-full h-full object-cover"
+          />
+        </div>
+        <Text as="div" size="3" weight="bold">
+          {post.title}
+        </Text>
+        <Text as="div" color="gray">
+          {post.description}
+        </Text>
+      </Grid>
     </Link>
   );
 };
