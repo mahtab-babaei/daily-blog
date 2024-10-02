@@ -14,6 +14,7 @@ const PostsSummary = async () => {
     <Grid gap="5" className="w-full max-w-lg">
       {posts.map((post) => (
         <Flex
+          key={post.id}
           gap="5"
           justify="between"
           align="center"
@@ -30,7 +31,7 @@ const PostsSummary = async () => {
               priority
               className="rounded-xl size-36 xs:hidden"
               src={noImage}
-              alt="imgCardd"
+              alt="imgCard"
             />
           )}
           <Text as="div" size="2" weight="bold">

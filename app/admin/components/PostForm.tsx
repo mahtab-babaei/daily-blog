@@ -1,18 +1,23 @@
 "use client";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { Post } from "@prisma/client";
 import { InfoCircledIcon } from "@radix-ui/react-icons";
 import { Callout, Flex, Grid, Text, TextField } from "@radix-ui/themes";
 import axios from "axios";
 import "easymde/dist/easymde.min.css";
+import dynamic from "next/dynamic";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { Controller, useForm } from "react-hook-form";
-import SimpleMDE from "react-simplemde-editor";
 import { z } from "zod";
 import { DarkButton, ErrorMessage } from "../../components";
 import { postSchema } from "../../validationSchemas";
 import "./customEditor.css";
-import { Post } from "@prisma/client";
+
+const SimpleMDE = dynamic(
+  () => import("react-simplemde-editor"), 
+  { ssr: false }
+);
 
 type PostFormData = z.infer<typeof postSchema>;
 
@@ -32,10 +37,8 @@ const PostForm = ({ post }: { post?: Post }) => {
   const onSubmit = handleSubmit(async (data) => {
     try {
       setSubmitting(true);
-      if (post) 
-        await axios.patch("/api/blog/" + post.id, data);
-      else 
-        await axios.post("/api/blog", data);
+      if (post) await axios.patch("/api/blog/" + post.id, data);
+      else await axios.post("/api/blog", data);
       router.push("/blog");
     } catch (error) {
       setSubmitting(false);
