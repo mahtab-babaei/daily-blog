@@ -14,10 +14,9 @@ import { DarkButton, ErrorMessage } from "../../components";
 import { postSchema } from "../../validationSchemas";
 import "./customEditor.css";
 
-const SimpleMDE = dynamic(
-  () => import("react-simplemde-editor"), 
-  { ssr: false }
-);
+const SimpleMDE = dynamic(() => import("react-simplemde-editor"), {
+  ssr: false,
+});
 
 type PostFormData = z.infer<typeof postSchema>;
 
@@ -40,6 +39,7 @@ const PostForm = ({ post }: { post?: Post }) => {
       if (post) await axios.patch("/api/blog/" + post.id, data);
       else await axios.post("/api/blog", data);
       router.push("/blog");
+      router.refresh();
     } catch (error) {
       setSubmitting(false);
       setError("متاسفیم، یک خطای غیر منتظره رخ داد!");
