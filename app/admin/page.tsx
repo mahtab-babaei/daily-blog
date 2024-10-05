@@ -1,6 +1,11 @@
 import { Flex, Grid, Text } from "@radix-ui/themes";
 import CreateNewPost from "./new/CreateNewPost";
 import PostsSummary from "./userPosts/PostsSummary";
+import dynamic from "next/dynamic";
+
+const PostForm = dynamic(() => import("@/app/admin/components/PostForm"), {
+  ssr: false,
+});
 
 const AdminPage = () => {
   return (
