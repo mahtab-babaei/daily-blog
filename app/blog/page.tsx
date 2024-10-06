@@ -24,6 +24,6 @@ const BlogPage = async () => {
   );
 };
 
-export const dynamic = 'force-dynamic'
+export const dynamic = "force-dynamic";
 
 export default BlogPage;

@@ -1,4 +1,8 @@
-import PostForm from "../components/PostForm";
+import dynamic from "next/dynamic";
+
+const PostForm = dynamic(() => import("@/app/admin/components/PostForm"), {
+  ssr: false,
+});
 
 const CreateNewPost = () => {
   return <PostForm />;
