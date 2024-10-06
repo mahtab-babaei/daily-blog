@@ -21,7 +21,7 @@ const PostCard = ({ post }: { post: Post }) => {
           {post.title}
         </Text>
         <Text as="div" color="gray">
-          {post.description}
+          {post.description.slice(0, 145) + "..."}
         </Text>
       </Grid>
     </Link>
