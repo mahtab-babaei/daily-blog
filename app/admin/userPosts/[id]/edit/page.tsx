@@ -2,9 +2,11 @@ import prisma from "@/prisma/client";
 import { Flex, Grid, Text } from "@radix-ui/themes";
 import { notFound } from "next/navigation";
 import dynamic from "next/dynamic";
+import PostFormSkeleton from "@/app/admin/components/PostFormSkeleton";
 
 const PostForm = dynamic(() => import("@/app/admin/components/PostForm"), {
   ssr: false,
+  loading: () => <PostFormSkeleton />,
 });
 
 interface Props {
