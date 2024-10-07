@@ -20,6 +20,7 @@
     "jalaali-js": "^1.2.7",
     "moment-jalaali": "^0.10.1",
     "next": "^14.2.5",
+    "next-auth": "^4.24.8",
     "prisma": "^5.18.0",
     "react": "^18",
     "react-dom": "^18",
