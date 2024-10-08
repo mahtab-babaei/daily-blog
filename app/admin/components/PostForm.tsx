@@ -1,8 +1,7 @@
 "use client";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Post } from "@prisma/client";
-import { InfoCircledIcon } from "@radix-ui/react-icons";
-import { Callout, Flex, Grid, Text, TextField } from "@radix-ui/themes";
+import { Flex, Grid, Text, TextField } from "@radix-ui/themes";
 import axios from "axios";
 import "easymde/dist/easymde.min.css";
 import { useRouter } from "next/navigation";
@@ -10,7 +9,7 @@ import { useState } from "react";
 import { Controller, useForm } from "react-hook-form";
 import SimpleMDE from 'react-simplemde-editor';
 import { z } from "zod";
-import { DarkButton, ErrorMessage } from "../../components";
+import { DarkButton, ErrorCallout, ErrorMessage } from "../../components";
 import { postSchema } from "../../validationSchemas";
 import "./customEditor.css";
 
@@ -45,19 +44,7 @@ const PostForm = ({ post }: { post?: Post }) => {
   return (
     <form onSubmit={onSubmit}>
       <Grid gap="5">
-        {error && (
-          <Callout.Root
-            variant="outline"
-            size="1"
-            color="ruby"
-            className="text-accent"
-          >
-            <Callout.Icon>
-              <InfoCircledIcon />
-            </Callout.Icon>
-            <Callout.Text size="1">{error}</Callout.Text>
-          </Callout.Root>
-        )}
+        <ErrorCallout>{error}</ErrorCallout>
         <Grid gap="3">
           <Text className="text-dark text-base font-medium">عنوان</Text>
           <TextField.Root

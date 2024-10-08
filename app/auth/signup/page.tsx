@@ -1,15 +1,14 @@
 "use client";
-import { DarkButton, ErrorMessage } from "@/app/components";
+import { DarkButton, ErrorCallout, ErrorMessage } from "@/app/components";
 import { userSchema } from "@/app/validationSchemas";
-import { InfoCircledIcon } from "@radix-ui/react-icons";
-import { Callout, Flex, Grid, Text, TextField } from "@radix-ui/themes";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { Flex, Grid, Text, TextField } from "@radix-ui/themes";
 import axios from "axios";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
-import { zodResolver } from "@hookform/resolvers/zod";
 
 type signupForm = z.infer<typeof userSchema>;
 
@@ -48,19 +47,7 @@ const SignUpPage = () => {
         </Text>
         <form onSubmit={onSubmit}>
           <Grid gap="5">
-            {error && (
-              <Callout.Root
-                variant="outline"
-                size="1"
-                color="ruby"
-                className="text-accent"
-              >
-                <Callout.Icon>
-                  <InfoCircledIcon />
-                </Callout.Icon>
-                <Callout.Text size="1">{error}</Callout.Text>
-              </Callout.Root>
-            )}
+            <ErrorCallout>{error}</ErrorCallout>
             <Grid gap="3">
               <Text className="text-dark text-base font-medium">
                 نام کاربری

@@ -6,4 +6,6 @@ export { default as MainNav } from "./MainNav";
 export { default as NavLinks } from "./NavLinks";
 export { default as Spinner } from "./Spinner";
 export { default as ConditionalImage } from "./ConditionalImage";
-export { default as loadingPage } from "./LoadingPage";
+export { default as LoadingPage } from "./LoadingPage";
+export { default as ErrorCallout } from "./ErrorCallout";
+
