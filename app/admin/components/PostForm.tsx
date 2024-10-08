@@ -44,7 +44,7 @@ const PostForm = ({ post }: { post?: Post }) => {
 
   return (
     <form onSubmit={onSubmit}>
-      <Grid gap="5" className="w-full max-w-md md:max-w-lg lg:max-w-2xl">
+      <Grid gap="5">
         {error && (
           <Callout.Root
             variant="outline"
