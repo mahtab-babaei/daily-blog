@@ -1,10 +1,12 @@
 "use client";
-import { Flex, Text } from "@radix-ui/themes";
+import { Flex } from "@radix-ui/themes";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import classnames from "classnames";
 import { useSession } from "next-auth/react";
 import AccentButton from "./AccentButton";
+import logo from "@/public/images/main/Logo.png";
+import Image from "next/image";
 
 const NavLinks = () => {
   const currentPath = usePathname();
@@ -12,38 +14,46 @@ const NavLinks = () => {
 
   const links = [
     { label: "خانه", href: "/", key: "home" },
+    { label: "ادمین", href: "/admin", key: "admin" },
     { label: "بلاگ", href: "/blog", key: "blog" },
-    { label: "صفحه ادمین", href: "/admin", key: "admin" },
+    { label: "سوالات متداول", href: "/", key: "questions" },
   ];
 
   return (
-    <Flex
-      gap="5"
-      justify="center"
-      align="center"
-      py="6"
-      className="text-neutral text-base"
-    >
-      <AccentButton>
-        {status === "authenticated" && <Link href="/auth/signout">خروج</Link>}
-        {status === "unauthenticated" && <Link href="/auth/signin">ورود</Link>}
-      </AccentButton>
-      <Flex gap="5" align="center">
-        {links.map((link) => (
-          <Link
-            key={link.key}
-            href={link.href}
-            className={classnames({
-              "font-bold": link.href === currentPath,
-              "hover:font-bold transition-colors": true,
-            })}
-          >
-            {link.label}
-          </Link>
-        ))}
+    <div className="px-10 2xs:px-4">
+      <Flex
+        gap="5"
+        justify="between"
+        align="center"
+        py="5"
+        className="text-neutral text-base truncate"
+      >
+        <AccentButton>
+          {status === "authenticated" && <Link href="/auth/signout">خروج</Link>}
+          {status === "unauthenticated" && (
+            <Link href="/auth/signin">ورود</Link>
+          )}
+        </AccentButton>
+        <Flex gap="5" align="center">
+          {links.map((link) => (
+            <Link
+              key={link.key}
+              href={link.href}
+              className={classnames({
+                "font-bold": link.href === currentPath,
+                "hover:font-bold transition-colors": true,
+                "custom:hidden": link.key === "questions",
+              })}
+            >
+              {link.label}
+            </Link>
+          ))}
+        </Flex>
+        <Link href="/" className="xs:hidden">
+          <Image priority src={logo} alt="logo" />
+        </Link>
       </Flex>
-      <Link href="/">لوگو</Link>
-    </Flex>
+    </div>
   );
 };
 

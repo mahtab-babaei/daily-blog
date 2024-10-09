@@ -5,7 +5,7 @@ import Image from "next/image";
 const HomeNav = ({ children }: PropsWithChildren) => {
   return (
     <div className="relative w-full h-[400px]">
-      <div className="absolute top-0 left-1/2 transform -translate-x-1/2 z-10">
+      <div className="absolute w-full top-0 left-1/2 transform -translate-x-1/2 z-10">
         {children}
       </div>
       <div className="absolute diagonal-gradient w-full h-full z-0"></div>
