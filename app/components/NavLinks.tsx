@@ -1,11 +1,14 @@
 "use client";
-import { Flex } from "@radix-ui/themes";
+import { Flex, Text } from "@radix-ui/themes";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import classnames from "classnames";
+import { useSession } from "next-auth/react";
+import AccentButton from "./AccentButton";
 
 const NavLinks = () => {
   const currentPath = usePathname();
+  const { status, data: session } = useSession();
 
   const links = [
     { label: "خانه", href: "/", key: "home" },
@@ -14,8 +17,18 @@ const NavLinks = () => {
   ];
 
   return (
-    <Flex gap="5" justify="center" py="6" className="text-neutral text-base">
-      <Flex gap="5">
+    <Flex
+      gap="5"
+      justify="center"
+      align="center"
+      py="6"
+      className="text-neutral text-base"
+    >
+      <AccentButton>
+        {status === "authenticated" && <Link href="/auth/signout">خروج</Link>}
+        {status === "unauthenticated" && <Link href="/auth/signin">ورود</Link>}
+      </AccentButton>
+      <Flex gap="5" align="center">
         {links.map((link) => (
           <Link
             key={link.key}

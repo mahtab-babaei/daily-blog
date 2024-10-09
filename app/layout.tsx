@@ -5,6 +5,7 @@ import "./globals.css";
 import { Container, Theme } from "@radix-ui/themes";
 import NavBar from "./NavBar";
 import { Rubik } from "next/font/google";
+import AuthProvider from "./auth/Provider";
 
 const rubik = Rubik({
   subsets: ["arabic"],
@@ -24,12 +25,14 @@ export default function RootLayout({
   return (
     <html lang="en" dir="rtl">
       <body className={rubik.variable}>
-        <Theme className="bg-neutral text-sm">
-          <NavBar />
-          <main className="py-12 px-6">
-            <Container>{children}</Container>
-          </main>
-        </Theme>
+        <AuthProvider>
+          <Theme className="bg-neutral text-sm">
+            <NavBar />
+            <main className="py-12 px-6">
+              <Container>{children}</Container>
+            </main>
+          </Theme>
+        </AuthProvider>
       </body>
     </html>
   );
