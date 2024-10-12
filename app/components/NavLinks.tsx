@@ -1,17 +1,14 @@
 "use client";
-import noAvatar from "@/public/images/avatars/noAvatar.png";
 import logo from "@/public/images/main/Logo.png";
-import { Avatar, DropdownMenu, Flex, Text } from "@radix-ui/themes";
+import { Flex } from "@radix-ui/themes";
 import classnames from "classnames";
-import { useSession } from "next-auth/react";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import AccentButton from "./AccentButton";
+import AuthStatus from "./AuthStatus";
 
 const NavLinks = () => {
   const currentPath = usePathname();
-  const { status, data: session } = useSession();
 
   const links = [
     { label: "خانه", href: "/", key: "home" },
@@ -29,37 +26,7 @@ const NavLinks = () => {
         py="5"
         className="text-neutral text-base truncate"
       >
-        {status === "authenticated" && (
-          <DropdownMenu.Root>
-            <DropdownMenu.Trigger>
-              <Text className="cursor-pointer">
-                <Avatar
-                  size="3"
-                  radius="full"
-                  src={
-                    session.user!.image ? `/${session.user!.image}` : undefined
-                  }
-                  fallback={
-                    <Image src={noAvatar} alt="noAvatar" priority />
-                  }
-                />
-              </Text>
-            </DropdownMenu.Trigger>
-            <DropdownMenu.Content className="mr-8 2xs:mr-4">
-              <DropdownMenu.Item dir="rtl">
-                <Link href="#">ویرایش اطلاعات</Link>
-              </DropdownMenu.Item>
-              <DropdownMenu.Item dir="rtl">
-                <Link href="auth/signout">خروج</Link>
-              </DropdownMenu.Item>
-            </DropdownMenu.Content>
-          </DropdownMenu.Root>
-        )}
-        {status === "unauthenticated" && (
-          <AccentButton>
-            <Link href="/auth/signin">ورود</Link>
-          </AccentButton>
-        )}
+        <AuthStatus />
         <Flex gap="5" align="center">
           {links.map((link) => (
             <Link

@@ -8,4 +8,4 @@ export { default as Spinner } from "./Spinner";
 export { default as ConditionalImage } from "./ConditionalImage";
 export { default as LoadingPage } from "./LoadingPage";
 export { default as ErrorCallout } from "./ErrorCallout";
-
+export { default as AuthStatus } from "./AuthStatus";

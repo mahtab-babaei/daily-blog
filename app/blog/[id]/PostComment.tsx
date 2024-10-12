@@ -1,5 +1,5 @@
 import { AccentButton } from '@/app/components';
-import noAvatar from '@/public/images/avatars/noAvatar.jpg';
+import noAvatar from '@/public/images/avatars/noAvatar.png';
 import { Avatar, Flex, Grid } from "@radix-ui/themes";
 import Image from "next/image";
 const PostComment = () => {
