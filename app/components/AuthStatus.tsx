@@ -1,5 +1,5 @@
 import noAvatar from "@/public/images/avatars/noAvatar.png";
-import { Avatar, DropdownMenu, Text } from "@radix-ui/themes";
+import { Avatar, DropdownMenu, Spinner, Text } from "@radix-ui/themes";
 import AccentButton from "./AccentButton";
 import Image from "next/image";
 import Link from "next/link";
@@ -8,7 +8,7 @@ import { useSession } from "next-auth/react";
 const AuthStatus = () => {
   const { status, data: session } = useSession();
 
-  if (status === "loading") return null;
+  if (status === "loading") return <Spinner size='3' className="p-2"/>;
 
   return (
     <>
