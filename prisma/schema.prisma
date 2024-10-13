@@ -20,6 +20,8 @@ model Post {
   image       String?  @db.Text
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
+  userId      String   @db.VarChar(255)
+  user        User     @relation(fields: [userId], references: [id])
 }
 
 model User {
@@ -29,4 +31,5 @@ model User {
   hashedPassword String
   image          String?
   createdAt      DateTime @default(now())
+  posts          Post[]
 }
