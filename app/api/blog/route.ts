@@ -19,6 +19,7 @@ export async function POST(request: NextRequest) {
 
   const newPost = await prisma.post.create({
     data: {
+      userId: body.userId,
       title: body.title,
       description: body.description,
       image: body.image,

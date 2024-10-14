@@ -12,10 +12,12 @@ import { z } from "zod";
 import { DarkButton, ErrorCallout, ErrorMessage } from "../../components";
 import { postSchema } from "../../validationSchemas";
 import "./customEditor.css";
+import { useSession } from "next-auth/react";
 
 type PostFormData = z.infer<typeof postSchema>;
 
 const PostForm = ({ post }: { post?: Post }) => {
+  const {data: session} = useSession();
   const router = useRouter();
   const {
     register,
@@ -31,8 +33,11 @@ const PostForm = ({ post }: { post?: Post }) => {
   const onSubmit = handleSubmit(async (data) => {
     try {
       setSubmitting(true);
+      const response = await axios.post("/api/user", session!.user);
+      const userId = response.data.id;
+
       if (post) await axios.patch("/api/blog/" + post.id, data);
-      else await axios.post("/api/blog", data);
+      else await axios.post("/api/blog", {...data, userId});
       router.push("/blog");
       router.refresh();
     } catch (error) {
