@@ -19,7 +19,7 @@ const PostDetailPage = async ({ params }: Props) => {
     <Flex justify="center">
       <Grid gap="8" className="max-w-lg">
         <PostDetails post={post} />
-        <PostComment />
+        <PostComment postId={post.id} />
       </Grid>
     </Flex>
   );

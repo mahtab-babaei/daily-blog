@@ -32,3 +32,15 @@ export const userSchema = z
     message: "کلمات عبور باهم یکسان نیستند.",
     path: ["confirmPassword"],
   });
+
+export const emailSchema = z.object({
+  email: z
+    .string()
+    .email({ message: "Invalid email" }),
+});
+
+export const commentSchema = z.object({
+  content: z.string().min(1, { message: "نظر خود را بتویسید!" }),
+  postId: z.number().min(1, { message: "userId is required" }),
+  userId: z.string().min(1, { message: "postId is required" }),
+});
