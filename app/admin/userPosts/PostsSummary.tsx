@@ -5,9 +5,13 @@ import { PiEyeBold } from "react-icons/pi";
 import { AccentButton, ConditionalImage } from "../../components";
 import DeletePostButton from "./DeletePostButton";
 import EditPostButton from "./EditPostButton";
+import { getUser } from "../userPosts/getUser";
 
 const PostsSummary = async () => {
-  const posts = await prisma.post.findMany();
+  const currentUser = await getUser();
+  const posts = await prisma.post.findMany({
+    where: { userId: currentUser!.id },
+  });
   return (
     <Grid gap="5" className="w-full max-w-lg">
       {posts.map((post) => (
