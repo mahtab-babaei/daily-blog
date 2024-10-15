@@ -33,11 +33,8 @@ const PostForm = ({ post }: { post?: Post }) => {
   const onSubmit = handleSubmit(async (data) => {
     try {
       setSubmitting(true);
-      const response = await axios.post("/api/user", session!.user);
-      const userId = response.data.id;
-
       if (post) await axios.patch("/api/blog/" + post.id, data);
-      else await axios.post("/api/blog", {...data, userId});
+      else await axios.post("/api/blog", {...data, userId: session!.user.id});
       router.push("/blog");
       router.refresh();
     } catch (error) {

@@ -29,12 +29,10 @@ const PostComment = ({ postId }: { postId: number }) => {
       if (!session) {
         router.push("/auth/signin");
       } else {
-        const response = await axios.post("/api/user", session!.user);
-        const userId = response.data.id;
         await axios.post("/api/comments", {
           content: data.content,
           postId,
-          userId,
+          userId: session.user.id,
         });
         setSuccessMessage("نظر شما با موفقیت ثبت شد :)");
         reset();

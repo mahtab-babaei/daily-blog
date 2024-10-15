@@ -43,6 +43,20 @@ const authOptions: NextAuthOptions = {
     signOut: "/auth/signout",
     newUser: "/auth/signup",
   },
+  callbacks: {
+    async session({ session, token }) {
+      if (token?.sub) {
+        session.user!.id = token.sub;
+      }
+      return session;
+    },
+    async jwt({ token, user }) {
+      if (user) {
+        token.sub = user.id;
+      }
+      return token;
+    },
+  },
 };
 
 export default authOptions;
