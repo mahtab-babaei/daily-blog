@@ -12,6 +12,7 @@ const PostsSummary = async () => {
   const session = await getServerSession(authOptions);
   const posts = await prisma.post.findMany({
     where: { userId: session?.user.id },
+    orderBy: { createdAt: "desc" },
   });
 
   return (
@@ -43,9 +44,6 @@ const PostsSummary = async () => {
           </Grid>
         </Flex>
       ))}
-      <Flex justify="center">
-        <AccentButton>دیدن همه</AccentButton>
-      </Flex>
     </Grid>
   );
 };

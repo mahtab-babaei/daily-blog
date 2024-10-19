@@ -3,7 +3,7 @@ import { Flex, Grid, Text } from "@radix-ui/themes";
 import PostCard from "./PostCard";
 
 const BlogPage = async () => {
-  const posts = await prisma.post.findMany();
+  const posts = await prisma.post.findMany({ orderBy: { createdAt: "desc" } });
   return (
     <Flex justify="center">
       <Grid gap="8">
