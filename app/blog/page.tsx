@@ -1,9 +1,22 @@
 import prisma from "@/prisma/client";
 import { Flex, Grid, Text } from "@radix-ui/themes";
 import PostCard from "./PostCard";
+import Pagination from "../components/Pagination";
 
-const BlogPage = async () => {
-  const posts = await prisma.post.findMany({ orderBy: { createdAt: "desc" } });
+const BlogPage = async ({
+  searchParams,
+}: {
+  searchParams: { page: string };
+}) => {
+  const page = parseInt(searchParams.page) || 1;
+  const pageSize = 6;
+  const postCount = await prisma.post.count();
+
+  const posts = await prisma.post.findMany({
+    orderBy: { createdAt: "desc" },
+    skip: (page - 1) * pageSize,
+    take: pageSize,
+  });
   return (
     <Flex justify="center">
       <Grid gap="8">
@@ -19,6 +32,13 @@ const BlogPage = async () => {
             <PostCard key={post.id} post={post} />
           ))}
         </Grid>
+        <Flex justify="center">
+          <Pagination
+            itemCount={postCount}
+            pageSize={pageSize}
+            currentPage={page}
+          />
+        </Flex>
       </Grid>
     </Flex>
   );
