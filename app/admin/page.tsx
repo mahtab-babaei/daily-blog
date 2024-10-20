@@ -1,11 +1,16 @@
+import prisma from "@/prisma/client";
 import { Flex, Grid, Text } from "@radix-ui/themes";
-import CreateNewPost from "./new/CreateNewPost";
-import PostsSummary from "./userPosts/PostsSummary";
 import { getServerSession } from "next-auth";
 import authOptions from "../auth/authOptions";
-import prisma from "@/prisma/client";
+import CreateNewPost from "./new/CreateNewPost";
+import PostsSummary from "./userPosts/PostsSummary";
 
-const AdminPage = async () => {
+const AdminPage = async ({
+  searchParams,
+}: {
+  searchParams: { page: string };
+}) => {
+  const page = parseInt(searchParams.page) || 1;
   const session = await getServerSession(authOptions);
   const user = await prisma.user.findUnique({
     where: { id: session!.user.id },
@@ -24,9 +29,7 @@ const AdminPage = async () => {
         <Text className="font-extrabold text-lg text-primary">
           <Text className="text-accent">آخرین</Text> پست های شما
         </Text>
-        <Flex justify="center">
-          <PostsSummary />
-        </Flex>
+          <PostsSummary page={page} userId={user!.id} />
       </Grid>
     </Flex>
   );
