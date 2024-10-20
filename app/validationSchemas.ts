@@ -34,13 +34,23 @@ export const userSchema = z
   });
 
 export const emailSchema = z.object({
-  email: z
-    .string()
-    .email({ message: "Invalid email" }),
+  email: z.string().email({ message: "Invalid email" }),
 });
 
 export const commentSchema = z.object({
   content: z.string().min(1, { message: "نظر خود را بتویسید!" }),
   postId: z.number().min(1, { message: "userId is required" }),
   userId: z.string().min(1, { message: "postId is required" }),
+});
+
+export const userInformationSchema = z.object({
+  name: z
+    .string()
+    .min(3, { message: "نام کاربری نباید کمتر از 3 کاراکتر باشد." })
+    .max(50, { message: "نام کاربری نباید بیشتر از 50 کاراکتر باشد." }),
+  email: z
+    .string()
+    .min(1, { message: "لطفا ایمیل خود را وارد کنید." })
+    .email({ message: "آدرس ایمیل وارد شده معتبر نیست." }),
+  image: z.string(),
 });
