@@ -28,7 +28,7 @@ const AuthStatus = () => {
           </DropdownMenu.Trigger>
           <DropdownMenu.Content className="mr-8 2xs:mr-4">
             <DropdownMenu.Item dir="rtl">
-              <Link href="#">ویرایش اطلاعات</Link>
+              <Link href="/admin/information">ویرایش اطلاعات</Link>
             </DropdownMenu.Item>
             <DropdownMenu.Item dir="rtl">
               <Link href="/auth/signout">خروج</Link>
