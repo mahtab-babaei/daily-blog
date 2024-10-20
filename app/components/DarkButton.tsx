@@ -3,7 +3,7 @@ import Spinner from "./Spinner";
 
 interface Props {
   children: ReactNode;
-  isSubmitting?: boolean;
+  isSubmitting: boolean;
 }
 const DarkButton = ({ children, isSubmitting }: Props) => {
   return (
@@ -15,7 +15,7 @@ const DarkButton = ({ children, isSubmitting }: Props) => {
           flex
           items-center 
           justify-center 
-          w-28 
+          w-32
           h-10 
           bg-dark
           text-neutral 
