@@ -17,10 +17,10 @@ const PostCard = ({ post }: { post: Post }) => {
             className="w-full h-full object-cover"
           />
         </div>
-        <Text as="div" size="3" weight="bold">
+        <Text as="div" size="3" weight="bold" className="text-dark">
           {post.title}
         </Text>
-        <Text as="div" color="gray">
+        <Text as="div" className="text-light">
           {post.description.slice(0, 145) + "..."}
         </Text>
       </Grid>

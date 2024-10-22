@@ -1,9 +1,10 @@
-import Pagination from "./components/Pagination";
+import { Flex } from "@radix-ui/themes";
+import HomePage from "./HomePage";
 
 export default function Home() {
   return (
-    <div>
-      Daily Blog
-    </div>
+    <Flex justify="center">
+      <HomePage />
+    </Flex>
   );
 }
