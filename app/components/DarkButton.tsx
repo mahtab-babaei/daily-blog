@@ -3,7 +3,7 @@ import Spinner from "./Spinner";
 
 interface Props {
   children: ReactNode;
-  isSubmitting: boolean;
+  isSubmitting?: boolean;
 }
 const DarkButton = ({ children, isSubmitting }: Props) => {
   return (

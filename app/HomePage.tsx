@@ -10,7 +10,7 @@ const HomePage = async () => {
   });
 
   return (
-    <Grid gap="8" justify="center" mt="8">
+    <Grid gap="8" justify="center" className="custom:mt-1 mt-8">
       <Flex justify="center">
         <Text className="font-extrabold text-lg text-accent content-center text-center">
           <Text className="text-primary content-center">
@@ -26,7 +26,7 @@ const HomePage = async () => {
         ))}
       </div>
       <Flex justify="center">
-        <Text className="font-extrabold text-lg text-primary">
+        <Text id="faq" className="font-extrabold text-lg text-primary">
           سـوالات متـدوال
         </Text>
       </Flex>

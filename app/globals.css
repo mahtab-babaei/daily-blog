@@ -33,3 +33,7 @@ body {
   background: linear-gradient(45deg, #F44E77, #554DDE);
   clip-path: polygon(0 0, 100% 0, 100% 22%, 0 100%);
 }
+
+html {
+  scroll-behavior: smooth;
+}

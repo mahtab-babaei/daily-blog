@@ -14,7 +14,7 @@ const NavLinks = () => {
     { label: "خانه", href: "/", key: "home" },
     { label: "ادمین", href: "/admin", key: "admin" },
     { label: "بلاگ", href: "/blog", key: "blog" },
-    { label: "سوالات متداول", href: "/", key: "questions" },
+    { label: "سوالات متداول", href: "/#faq", key: "questions" },
   ];
 
   return (
