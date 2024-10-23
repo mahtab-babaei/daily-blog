@@ -1,10 +1,14 @@
 "use client";
-import { DarkButton, ErrorCallout, ErrorMessage, LoadingPage } from "@/app/components";
+import {
+  DarkButton,
+  ErrorCallout,
+  ErrorMessage,
+  LoadingPage,
+} from "@/app/components";
 import { userSchema } from "@/app/validationSchemas";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Flex, Grid, Text, TextField } from "@radix-ui/themes";
 import axios from "axios";
-import { Metadata } from "next";
 import { useSession } from "next-auth/react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
@@ -16,15 +20,7 @@ type signupForm = z.infer<typeof userSchema>;
 
 const SignupPage = () => {
   const router = useRouter();
-
   const { data: session } = useSession();
-  useEffect(() => {
-    if (session) router.push("/admin");
-  }, [session]);
-
-  if (session) return <LoadingPage/>;
-
-
   const {
     register,
     handleSubmit,
@@ -34,6 +30,12 @@ const SignupPage = () => {
   });
   const [error, setError] = useState("");
   const [isSubmitting, setSubmitting] = useState(false);
+
+  useEffect(() => {
+    if (session) router.push("/admin");
+  }, [session, router]);
+
+  if (session) return <LoadingPage />;
 
   const onSubmit = handleSubmit(async (data) => {
     try {
@@ -130,4 +132,3 @@ const SignupPage = () => {
 };
 
 export default SignupPage;
-

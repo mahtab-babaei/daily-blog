@@ -4,14 +4,19 @@ import noImage from "@/public/images/main/404.png";
 interface Props {
   src: string | null;
   alt: string;
-  className?: string
+  className?: string;
 }
-const ConditionalImage = ({src, alt, className}: Props) => {
+const ConditionalImage = ({ src, alt, className }: Props) => {
   return src ? (
-    <img src={src} alt={alt} className={className} />
+    <img
+      src={src}
+      alt={alt}
+      className={className}
+      style={{ maxWidth: "100%", height: "auto" }}
+    />
   ) : (
     <Image priority src={noImage} alt={alt} className={className} />
   );
-}
+};
 
-export default ConditionalImage
+export default ConditionalImage;

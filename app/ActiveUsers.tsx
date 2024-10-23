@@ -21,10 +21,9 @@ const ActiveUsers = async () => {
         <Flex align="center" justify="center">
           <Text className="font-extrabold text-lg text-light ml-2">2+</Text>
           {activeUsers.map((user) => (
-            <Tooltip.Root>
+            <Tooltip.Root key={user.id}>
               <Tooltip.Trigger asChild>
                 <Image
-                  key={user.id}
                   className="rounded-full -ml-3"
                   width="48"
                   height="48"
