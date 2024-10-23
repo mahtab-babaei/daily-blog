@@ -3,6 +3,7 @@ import { Flex, Grid, Text } from "@radix-ui/themes";
 import { notFound } from "next/navigation";
 import dynamic from "next/dynamic";
 import PostFormSkeleton from "@/app/admin/components/PostFormSkeleton";
+import { cache } from "react";
 
 const PostForm = dynamic(() => import("@/app/admin/components/PostForm"), {
   ssr: false,
@@ -13,10 +14,12 @@ interface Props {
   params: { id: string };
 }
 
+const fetchPost = cache((postId: number) =>
+  prisma.post.findUnique({ where: { id: postId } })
+);
+
 const EditPostPage = async ({ params }: Props) => {
-  const post = await prisma.post.findUnique({
-    where: { id: parseInt(params.id) },
-  });
+  const post = await fetchPost(parseInt(params.id));
 
   if (!post) notFound();
 
@@ -33,14 +36,12 @@ const EditPostPage = async ({ params }: Props) => {
 };
 
 export async function generateMetadata({ params }: Props) {
-  const post = await prisma.post.findUnique({
-    where: { id: parseInt(params.id) },
-  });
+  const post = await fetchPost(parseInt(params.id));
 
   return {
-    title: 'ویرایش ' + post?.title,
-    description: 'edit post ' + post?.id
-  }
+    title: "ویرایش " + post?.title,
+    description: "edit post " + post?.id,
+  };
 }
 
 export default EditPostPage;
