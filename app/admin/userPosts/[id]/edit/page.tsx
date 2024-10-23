@@ -32,4 +32,15 @@ const EditPostPage = async ({ params }: Props) => {
   );
 };
 
+export async function generateMetadata({ params }: Props) {
+  const post = await prisma.post.findUnique({
+    where: { id: parseInt(params.id) },
+  });
+
+  return {
+    title: 'ویرایش ' + post?.title,
+    description: 'edit post ' + post?.id
+  }
+}
+
 export default EditPostPage;

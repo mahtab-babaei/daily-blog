@@ -7,7 +7,7 @@ import PostDetails from "./PostDetails";
 
 interface Props {
   params: { id: string };
-  searchParams: {page: string}
+  searchParams: { page: string };
 }
 
 const PostDetailPage = async ({ params, searchParams }: Props) => {
@@ -28,4 +28,16 @@ const PostDetailPage = async ({ params, searchParams }: Props) => {
   );
 };
 
+export async function generateMetadata({ params }: { params: { id: string } }) {
+  const post = await prisma.post.findUnique({
+    where: { id: parseInt(params.id) },
+  });
+
+  return {
+    title: post?.title,
+    description: 'details of post ' + post?.id
+  }
+}
+
 export default PostDetailPage;
+

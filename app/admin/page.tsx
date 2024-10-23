@@ -4,6 +4,7 @@ import { getServerSession } from "next-auth";
 import authOptions from "../auth/authOptions";
 import CreateNewPost from "./new/CreateNewPost";
 import PostsSummary from "./userPosts/PostsSummary";
+import { Metadata } from "next";
 
 const AdminPage = async ({
   searchParams,
@@ -33,6 +34,11 @@ const AdminPage = async ({
       </Grid>
     </Flex>
   );
+};
+
+export const metadata: Metadata = {
+  title: "دیلی بلاگ - صفحه ادمین",
+  description:  "صفحه ادمین در دیلی بلاگ",
 };
 
 export default AdminPage;

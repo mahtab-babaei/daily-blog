@@ -2,6 +2,7 @@ import prisma from "@/prisma/client";
 import { Flex, Grid, Text } from "@radix-ui/themes";
 import PostCard from "./PostCard";
 import Pagination from "../components/Pagination";
+import { Metadata } from "next";
 
 const BlogPage = async ({
   searchParams,
@@ -45,5 +46,10 @@ const BlogPage = async ({
 };
 
 export const dynamic = "force-dynamic";
+
+export const metadata: Metadata = {
+  title: "دیلی بلاگ - آخرین مطالب",
+  description:  "آخرین مطالب منتشر شده در دیلی بلاگ",
+};
 
 export default BlogPage;
