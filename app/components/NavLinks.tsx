@@ -1,5 +1,5 @@
 "use client";
-import logo from "@/public/images/main/logo.png";
+import logo from "@/public/images/main/Logo.png";
 import { Flex } from "@radix-ui/themes";
 import classnames from "classnames";
 import Image from "next/image";

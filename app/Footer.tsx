@@ -1,4 +1,4 @@
-import logo from "@/public/images/main/logo.png";
+import logo from "@/public/images/main/Logo.png";
 import { Flex, Grid, Text } from "@radix-ui/themes";
 import Image from "next/image";
 import { BsInstagram, BsTelegram, BsTwitterX } from "react-icons/bs";
