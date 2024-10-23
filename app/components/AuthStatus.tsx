@@ -22,7 +22,9 @@ const AuthStatus = () => {
     <>
       <DropdownMenu.Root>
         <DropdownMenu.Trigger>
-          <UserAvatar />
+          <button className="focus:outline-none">
+            <UserAvatar />
+          </button>
         </DropdownMenu.Trigger>
         <DropdownMenu.Content className="mr-8 2xs:mr-4">
           <DropdownMenu.Item dir="rtl">

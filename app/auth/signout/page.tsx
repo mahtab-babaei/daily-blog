@@ -1,12 +1,14 @@
 "use client";
+import { LoadingPage } from "@/app/components";
 import { AlertDialog, Flex, Grid, Text } from "@radix-ui/themes";
 import { signOut } from "next-auth/react";
 import { useRouter } from "next/navigation";
-import React from "react";
 
 const SignOutPage = () => {
   const router = useRouter();
   return (
+    <>
+    <LoadingPage />
     <AlertDialog.Root open={true}>
       <AlertDialog.Content className="text-dark">
         <AlertDialog.Title className="text-base mb-5">
@@ -36,6 +38,7 @@ const SignOutPage = () => {
         </Flex>
       </AlertDialog.Content>
     </AlertDialog.Root>
+    </>
   );
 };
 
