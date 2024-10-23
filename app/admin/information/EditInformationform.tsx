@@ -30,6 +30,7 @@ const EditInformationform = ({ user }: { user: User }) => {
       setSubmitting(true);
       await axios.patch(`/api/admin/${user.id}`, data);
       router.push("/admin");
+      router.refresh();
     } catch (error) {
       setSubmitting(false);
       setError("متاسفیم، یک خطای غیر منتظره رخ داد!");
