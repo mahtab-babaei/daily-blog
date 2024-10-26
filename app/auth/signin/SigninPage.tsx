@@ -26,10 +26,12 @@ const SigninPage = () => {
         email: data.email,
         password: data.password,
       });
+      console.log(result);
       if (result?.error) {
         setSubmitting(false);
         setError("ایمیل یا رمز عبور اشتباهه، دوباره امتحان کن.");
       } else {
+        setSubmitting(false);
         router.push("/admin");
       }
     } catch (error) {
@@ -88,4 +90,3 @@ const SigninPage = () => {
 };
 
 export default SigninPage;
-
