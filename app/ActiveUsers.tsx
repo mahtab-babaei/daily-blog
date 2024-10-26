@@ -9,7 +9,6 @@ const ActiveUsers = async () => {
     orderBy: { posts: { _count: "desc" } },
     take: 3,
   });
-  console.log("Active Users:", activeUsers);
 
   return (
     <>

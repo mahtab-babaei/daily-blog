@@ -2,19 +2,27 @@
 import { DarkButton, ErrorCallout } from "@/app/components";
 import { userSchema } from "@/app/validationSchemas";
 import { Flex, Grid, Text, TextField } from "@radix-ui/themes";
-import { getSession, signIn } from "next-auth/react";
+import { getSession, signIn, useSession } from "next-auth/react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 
 type signinForm = z.infer<typeof userSchema>;
 
 const SigninPage = () => {
+  const router = useRouter();
+  const { data: session } = useSession();
+
+  useEffect(() => {
+    if (session) {
+      router.push("/admin");
+    }
+  }, [session, router]);
+
   const { register, handleSubmit } = useForm<signinForm>();
   const [error, setError] = useState("");
-  const router = useRouter();
   const [isSubmitting, setSubmitting] = useState(false);
 
   const onSubmit = handleSubmit(async (data) => {
@@ -31,13 +39,12 @@ const SigninPage = () => {
         setError("ایمیل یا رمز عبور اشتباهه، دوباره امتحان کن.");
       } else {
         await getSession();
+        router.refresh();
         router.push("/admin");
       }
     } catch (error) {
       setSubmitting(false);
       setError("متاسفیم، یک خطای غیر منتظره رخ داد!");
-    } finally {
-      setSubmitting(false);
     }
   });
 
