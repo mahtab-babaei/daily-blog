@@ -42,7 +42,7 @@ const SigninPage = () => {
         if (session) {
           setTimeout(() => {
             router.refresh();
-          }, 3000);
+          }, 6000);
         } else {
           setError("مشکلی در ورود به سیستم وجود دارد، لطفاً دوباره تلاش کنید.");
         }
