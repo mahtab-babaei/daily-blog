@@ -1,6 +1,6 @@
 import prisma from "@/prisma/client";
 import noAvatar from "@/public/images/avatars/noAvatar.png";
-import { Flex, Text } from "@radix-ui/themes";
+import { Flex, Text, Tooltip } from "@radix-ui/themes";
 import Image from "next/image";
 
 const ActiveUsers = async () => {
@@ -21,15 +21,20 @@ const ActiveUsers = async () => {
         <Flex align="center" justify="center">
           <Text className="font-extrabold text-lg text-light ml-2">2+</Text>
           {activeUsers.map((user) => (
-            <Image
+            <Tooltip
               key={user.id}
-              className="rounded-full -ml-3"
-              width="48"
-              height="48"
-              priority
-              alt="activeUser"
-              src={user.image || noAvatar}
-            />
+              content={user.name}
+              className="rounded-lg p-2"
+            >
+              <Image
+                className="rounded-full -ml-3"
+                width="48"
+                height="48"
+                priority
+                alt="activeUser"
+                src={user.image || noAvatar}
+              />
+            </Tooltip>
           ))}
         </Flex>
       </div>
