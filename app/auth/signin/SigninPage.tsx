@@ -31,7 +31,6 @@ const SigninPage = () => {
         setSubmitting(false);
         setError("ایمیل یا رمز عبور اشتباهه، دوباره امتحان کن.");
       } else {
-        setSubmitting(false);
         router.push("/admin");
       }
     } catch (error) {
