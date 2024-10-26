@@ -38,9 +38,10 @@ const SigninPage = () => {
         setSubmitting(false);
         setError("ایمیل یا رمز عبور اشتباهه، دوباره امتحان کن.");
       } else {
-        await getSession();
-        router.refresh();
-        router.push("/admin");
+        setTimeout(async () => {
+          await getSession();
+          router.push("/admin");
+        }, 2000);
       }
     } catch (error) {
       setSubmitting(false);
