@@ -2,8 +2,7 @@
 import { DarkButton, ErrorCallout } from "@/app/components";
 import { userSchema } from "@/app/validationSchemas";
 import { Flex, Grid, Text, TextField } from "@radix-ui/themes";
-import { Metadata } from "next";
-import { signIn } from "next-auth/react";
+import { getSession, signIn } from "next-auth/react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
@@ -25,17 +24,20 @@ const SigninPage = () => {
         redirect: false,
         email: data.email,
         password: data.password,
+        callbackUrl: "/admin",
       });
-      console.log(result);
       if (result?.error) {
         setSubmitting(false);
         setError("ایمیل یا رمز عبور اشتباهه، دوباره امتحان کن.");
       } else {
+        await getSession();
         router.push("/admin");
       }
     } catch (error) {
       setSubmitting(false);
       setError("متاسفیم، یک خطای غیر منتظره رخ داد!");
+    } finally {
+      setSubmitting(false);
     }
   });
 

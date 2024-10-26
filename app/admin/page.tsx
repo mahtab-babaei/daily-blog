@@ -30,7 +30,7 @@ const AdminPage = async ({
         <Text className="font-extrabold text-lg text-primary">
           <Text className="text-accent">آخرین</Text> پست های شما
         </Text>
-          <PostsSummary page={page} userId={user!.id} />
+        <PostsSummary page={page} userId={user!.id} />
       </Grid>
     </Flex>
   );
@@ -38,7 +38,7 @@ const AdminPage = async ({
 
 export const metadata: Metadata = {
   title: "دیلی بلاگ - صفحه ادمین",
-  description:  "صفحه ادمین در دیلی بلاگ",
+  description: "صفحه ادمین در دیلی بلاگ",
 };
 
 export default AdminPage;
