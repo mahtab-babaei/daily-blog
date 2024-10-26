@@ -40,7 +40,9 @@ const SigninPage = () => {
       } else {
         const session = await getSession();
         if (session) {
-          router.refresh();
+          setTimeout(() => {
+            router.refresh();
+          }, 3000);
         } else {
           setError("مشکلی در ورود به سیستم وجود دارد، لطفاً دوباره تلاش کنید.");
         }
