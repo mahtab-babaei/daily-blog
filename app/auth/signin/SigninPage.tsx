@@ -40,7 +40,7 @@ const SigninPage = () => {
       } else {
         const session = await getSession();
         if (session) {
-          router.push("/admin");
+          router.refresh();
         } else {
           setError("مشکلی در ورود به سیستم وجود دارد، لطفاً دوباره تلاش کنید.");
         }
