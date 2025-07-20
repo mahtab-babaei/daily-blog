@@ -1,6 +1,6 @@
 ## 📝 Daily Blog
 Share your thoughts, ideas, and experiences with others.
-Daily Blog is a simple and modern blogging platform where you can:
+Daily Blog is a simple and modern full-stack blogging app where you can:
 
 -  Register and create your own account
 -  Publish posts about anything you like
